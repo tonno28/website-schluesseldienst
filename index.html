@@ -1492,12 +1492,13 @@ document.getElementById('year').textContent = new Date().getFullYear();
     const n = cards.length;
     if (!n) return;
     const ringWidth = ring.getBoundingClientRect().width;
-    // No-overlap radius: r = (cardWidth/2) / tan(pi/n), + breathing room
-    const gap = 36;
-    const minRadius = (ringWidth / 2) / Math.tan(Math.PI / n) + gap;
+    // Radius so adjacent cards don't visually overlap under perspective.
+    // Chord between card centers needs to exceed cardWidth by a comfortable margin.
+    const chord = ringWidth * 1.45;
+    const radius = chord / (2 * Math.sin(Math.PI / n));
     cards.forEach((card, i) => {
       const angle = (i / n) * 360;
-      card.style.transform = `rotateY(${angle}deg) translateZ(${minRadius}px)`;
+      card.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
     });
   }
   layout();
