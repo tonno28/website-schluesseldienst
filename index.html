@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Schlüsseldienst Hitdorf · 24/7 Notdienst · Festpreis</title>
+<meta name="description" content="Schlüsseldienst Hitdorf – schnelle Türöffnung, Schlossaustausch und Einbruchschutz. 24/7 Notdienst, transparenter Festpreis, in 15 Minuten vor Ort." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- Navigation -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="logo">
+      <span class="logo-mark">
+        <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
+          <defs>
+            <linearGradient id="lg" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stop-color="#ffd166"/>
+              <stop offset="100%" stop-color="#f59e0b"/>
+            </linearGradient>
+          </defs>
+          <circle cx="11" cy="16" r="6.5" fill="none" stroke="url(#lg)" stroke-width="2.5"/>
+          <path d="M17 16 H29 M25 16 V21 M22 16 V19" fill="none" stroke="url(#lg)" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span>Schlüsseldienst<strong>Hitdorf</strong></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Leistungen</a></li>
+      <li><a href="#pricing">Preise</a></li>
+      <li><a href="#gebiet">Einsatzgebiet</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <a href="tel:+4915112345678" class="btn btn-call">
+      <span class="pulse"></span>
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.7.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.7.1.3 0 .7-.2 1l-2.3 2.1z"/></svg>
+      0151 1234 5678
+    </a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header id="top" class="hero">
+  <canvas id="hero3d"></canvas>
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-content">
+    <div class="badge">
+      <span class="dot"></span> 24/7 Notdienst · derzeit verfügbar
+    </div>
+    <h1>
+      <span class="line">Tür zu.</span>
+      <span class="line"><span class="grad">In 15 Minuten</span></span>
+      <span class="line">wieder offen.</span>
+    </h1>
+    <p class="lead">
+      Schlüsseldienst Hitdorf – fair, schnell und transparent.
+      Festpreis schon am Telefon. Kein Aufschlag nachts oder am Wochenende für die Anfahrt im Stadtgebiet.
+    </p>
+    <div class="cta-row">
+      <a href="tel:+4915112345678" class="btn btn-primary">
+        <span>Jetzt Notdienst rufen</span>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M5 12h12l-4-4 1.4-1.4L21 12l-6.6 6.4L13 17l4-4H5z"/></svg>
+      </a>
+      <a href="#pricing" class="btn btn-ghost">Festpreise ansehen</a>
+    </div>
+
+    <div class="trust">
+      <div class="trust-item"><strong>4.9★</strong><span>312 Bewertungen</span></div>
+      <div class="trust-item"><strong>~15 min</strong><span>Anfahrt im Schnitt</span></div>
+      <div class="trust-item"><strong>0 €</strong><span>Anfahrt sonntags</span></div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span></span>scrollen
+  </div>
+</header>
+
+<!-- Services -->
+<section id="services" class="section">
+  <div class="section-head">
+    <p class="eyebrow">Leistungen</p>
+    <h2>Alles rund um Ihr Schloss.<br/><span class="muted">Ein Team, ein Festpreis.</span></h2>
+  </div>
+
+  <div class="cards">
+    <article class="card tilt" data-tilt>
+      <div class="card-icon">
+        <svg viewBox="0 0 64 64" width="44" height="44" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="22" cy="32" r="10"/>
+          <path d="M32 32h22M48 32v8M42 32v6"/>
+        </svg>
+      </div>
+      <h3>Türöffnung</h3>
+      <p>Zugefallene oder verschlossene Tür? Wir öffnen zerstörungsfrei – auch bei Sicherheitsschlössern.</p>
+      <span class="price">ab 79 €</span>
+    </article>
+
+    <article class="card tilt" data-tilt>
+      <div class="card-icon">
+        <svg viewBox="0 0 64 64" width="44" height="44" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="14" y="22" width="36" height="28" rx="3"/>
+          <path d="M22 22v-6a10 10 0 0 1 20 0v6"/>
+          <circle cx="32" cy="36" r="3"/>
+        </svg>
+      </div>
+      <h3>Schlossaustausch</h3>
+      <p>Nach Schlüsselverlust oder Einbruch: Wir tauschen Ihr Schloss gegen ein hochwertiges, geprüftes Modell.</p>
+      <span class="price">ab 129 €</span>
+    </article>
+
+    <article class="card tilt" data-tilt>
+      <div class="card-icon">
+        <svg viewBox="0 0 64 64" width="44" height="44" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M32 8 12 16v14c0 12 8 20 20 24 12-4 20-12 20-24V16z"/>
+          <path d="m24 32 6 6 12-12"/>
+        </svg>
+      </div>
+      <h3>Einbruchschutz</h3>
+      <p>VdS-zertifizierte Schließanlagen, Panzerriegel, Bandsicherungen. Beratung kostenlos vor Ort.</p>
+      <span class="price">individuell</span>
+    </article>
+
+    <article class="card tilt" data-tilt>
+      <div class="card-icon">
+        <svg viewBox="0 0 64 64" width="44" height="44" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="10" y="14" width="44" height="36" rx="3"/>
+          <circle cx="32" cy="32" r="8"/>
+          <path d="M32 28v4l3 3"/>
+        </svg>
+      </div>
+      <h3>Tresoröffnung</h3>
+      <p>Privat- und Büro­tresore – wir öffnen fachgerecht, dokumentiert und meist ohne Beschädigung.</p>
+      <span class="price">auf Anfrage</span>
+    </article>
+
+    <article class="card tilt" data-tilt>
+      <div class="card-icon">
+        <svg viewBox="0 0 64 64" width="44" height="44" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 50V20l16-10 16 10v30"/>
+          <path d="M26 50V34h12v16"/>
+        </svg>
+      </div>
+      <h3>Briefkasten & Möbel</h3>
+      <p>Auch kleine Schlösser: Briefkasten, Schreibtisch, Spind. Schnell geöffnet, neu beschlüsselt.</p>
+      <span class="price">ab 39 €</span>
+    </article>
+
+    <article class="card tilt" data-tilt>
+      <div class="card-icon">
+        <svg viewBox="0 0 64 64" width="44" height="44" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22h40v24H12z"/>
+          <path d="M12 22 32 8l20 14"/>
+          <path d="M28 46v-8h8v8"/>
+        </svg>
+      </div>
+      <h3>Schließanlagen</h3>
+      <p>Planung, Erweiterung und Pflege Ihrer Schließanlage – für Mehrfamilienhäuser und Gewerbe.</p>
+      <span class="price">nach Aufwand</span>
+    </article>
+  </div>
+</section>
+
+<!-- Process / 3D Steps -->
+<section class="section process">
+  <div class="section-head">
+    <p class="eyebrow">So läuft's ab</p>
+    <h2>Vier Schritte. Kein Stress.</h2>
+  </div>
+
+  <div class="steps">
+    <div class="step tilt" data-tilt>
+      <div class="step-num">01</div>
+      <h4>Anrufen</h4>
+      <p>Schildern Sie kurz die Situation. Festpreis erhalten Sie direkt am Telefon.</p>
+    </div>
+    <div class="step tilt" data-tilt>
+      <div class="step-num">02</div>
+      <h4>Anfahrt</h4>
+      <p>Ein Techniker aus Hitdorf macht sich sofort auf den Weg – ø 15 Minuten.</p>
+    </div>
+    <div class="step tilt" data-tilt>
+      <div class="step-num">03</div>
+      <h4>Öffnen</h4>
+      <p>Zerstörungsfreie Öffnung durch geschultes Fachpersonal mit Profi-Werkzeug.</p>
+    </div>
+    <div class="step tilt" data-tilt>
+      <div class="step-num">04</div>
+      <h4>Bezahlen</h4>
+      <p>Bar, EC oder Rechnung. Quittung sofort, keine versteckten Kosten.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing" class="section">
+  <div class="section-head">
+    <p class="eyebrow">Transparente Preise</p>
+    <h2>Festpreis statt böser Überraschung.</h2>
+  </div>
+
+  <div class="pricing">
+    <div class="price-card tilt" data-tilt>
+      <h4>Standard­öffnung</h4>
+      <div class="big-price">79 €</div>
+      <p class="sub">Mo–Fr · 7–20 Uhr</p>
+      <ul>
+        <li>Anfahrt im Stadtgebiet inklusive</li>
+        <li>Zerstörungsfreie Öffnung</li>
+        <li>Quittung & Rechnung</li>
+      </ul>
+    </div>
+
+    <div class="price-card highlight tilt" data-tilt>
+      <span class="ribbon">beliebt</span>
+      <h4>Notdienst</h4>
+      <div class="big-price">119 €</div>
+      <p class="sub">Abends · Wochenende</p>
+      <ul>
+        <li>Anfahrt im Stadtgebiet inklusive</li>
+        <li>Reaktion in ≤ 20 Minuten</li>
+        <li>Auch Feiertage – ohne Aufschlag</li>
+      </ul>
+    </div>
+
+    <div class="price-card tilt" data-tilt>
+      <h4>Schloss­austausch</h4>
+      <div class="big-price">ab 129 €</div>
+      <p class="sub">inkl. Profil­zylinder</p>
+      <ul>
+        <li>Marken-Sicherheits­zylinder</li>
+        <li>Bohrschutz & Pickschutz</li>
+        <li>5 Schlüssel inklusive</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Coverage -->
+<section id="gebiet" class="section coverage">
+  <div class="coverage-inner">
+    <div class="coverage-text">
+      <p class="eyebrow">Einsatzgebiet</p>
+      <h2>Direkt aus Hitdorf <span class="grad">für Sie da.</span></h2>
+      <p class="lead">Wir wohnen hier. Wir arbeiten hier. Deshalb sind wir schneller als jeder anonyme Großdienst.</p>
+      <ul class="chips">
+        <li>Hitdorf</li><li>Rheindorf</li><li>Wiesdorf</li><li>Opladen</li>
+        <li>Monheim</li><li>Langenfeld</li><li>Leverkusen</li><li>Dormagen</li>
+      </ul>
+    </div>
+    <div class="coverage-visual">
+      <div class="orbit">
+        <div class="orbit-core">HD</div>
+        <div class="orbit-ring r1"><span></span></div>
+        <div class="orbit-ring r2"><span></span></div>
+        <div class="orbit-ring r3"><span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact / CTA -->
+<section id="kontakt" class="section cta-section">
+  <div class="cta-card">
+    <h2>Tür zu? <span class="grad">Wir sind dran.</span></h2>
+    <p>Rund um die Uhr erreichbar – auch sonn- und feiertags ohne Aufschlag für die Anfahrt im Stadtgebiet.</p>
+    <div class="cta-row">
+      <a href="tel:+4915112345678" class="btn btn-primary big">
+        <span>0151 1234 5678</span>
+      </a>
+      <a href="mailto:hilfe@schluesseldienst-hitdorf.de" class="btn btn-ghost big">E-Mail schreiben</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="logo small">
+        <span class="logo-mark">
+          <svg viewBox="0 0 32 32" width="22" height="22" aria-hidden="true">
+            <circle cx="11" cy="16" r="6.5" fill="none" stroke="#ffd166" stroke-width="2.5"/>
+            <path d="M17 16 H29 M25 16 V21 M22 16 V19" fill="none" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span>Schlüsseldienst<strong>Hitdorf</strong></span>
+      </div>
+      <p class="muted">Inhaber: Max Mustermann · Hitdorfer Straße 1 · 51371 Leverkusen-Hitdorf</p>
+    </div>
+    <div class="footer-cols">
+      <div>
+        <h5>Service</h5>
+        <a href="#services">Türöffnung</a>
+        <a href="#services">Schlossaustausch</a>
+        <a href="#services">Einbruchschutz</a>
+      </div>
+      <div>
+        <h5>Kontakt</h5>
+        <a href="tel:+4915112345678">0151 1234 5678</a>
+        <a href="mailto:hilfe@schluesseldienst-hitdorf.de">hilfe@…hitdorf.de</a>
+      </div>
+      <div>
+        <h5>Rechtliches</h5>
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+        <a href="#">AGB</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">© <span id="year"></span> Schlüsseldienst Hitdorf · Made in Leverkusen</div>
+</footer>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+  }
+}
+</script>
+<script type="module" src="script.js"></script>
+</body>
+</html>
