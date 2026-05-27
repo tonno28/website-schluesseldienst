@@ -7,7 +7,7 @@
 <meta name="description" content="Schlüsseldienst Hitdorf – schnelle Türöffnung, Schlossaustausch und Einbruchschutz. 24/7 Notdienst, transparenter Festpreis, in 15 Minuten vor Ort." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,500;1,9..144,700&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #0a0a14;
@@ -27,25 +27,90 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Geist', system-ui, -apple-system, sans-serif;
   background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
   cursor: none;
   -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+/* Living background */
+.bg-layers {
+  position: fixed; inset: 0; z-index: -1;
+  overflow: hidden; pointer-events: none;
+}
+.aurora {
+  position: absolute; inset: -20%;
+  background:
+    radial-gradient(40% 35% at 20% 30%, rgba(255, 138, 61, 0.35), transparent 70%),
+    radial-gradient(35% 30% at 80% 20%, rgba(255, 90, 95, 0.28), transparent 70%),
+    radial-gradient(45% 40% at 70% 80%, rgba(255, 209, 102, 0.25), transparent 70%),
+    radial-gradient(30% 25% at 15% 85%, rgba(108, 184, 255, 0.18), transparent 70%);
+  filter: blur(60px) saturate(140%);
+  animation: aurora 22s ease-in-out infinite alternate;
+}
+@keyframes aurora {
+  0%   { transform: translate3d(0,0,0) rotate(0deg) scale(1); }
+  50%  { transform: translate3d(3%, -4%, 0) rotate(8deg) scale(1.08); }
+  100% { transform: translate3d(-4%, 5%, 0) rotate(-6deg) scale(1.04); }
+}
+.blob {
+  position: absolute; border-radius: 50%;
+  filter: blur(80px); opacity: 0.55;
+  mix-blend-mode: screen;
+}
+.blob.b1 { width: 520px; height: 520px; background: #ff8a3d; top: -8%; left: -6%; animation: drift1 28s ease-in-out infinite; }
+.blob.b2 { width: 420px; height: 420px; background: #ff5a5f; top: 40%; right: -8%; animation: drift2 32s ease-in-out infinite; }
+.blob.b3 { width: 600px; height: 600px; background: #ffd166; bottom: -10%; left: 30%; animation: drift3 36s ease-in-out infinite; }
+@keyframes drift1 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(8vw, 6vh) scale(1.15); }
+}
+@keyframes drift2 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(-10vw, -4vh) scale(0.9); }
+}
+@keyframes drift3 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(-6vw, -10vh) scale(1.2); }
+}
+.grain {
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.18 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity: 0.5; mix-blend-mode: overlay;
+}
+.stars {
+  position: absolute; inset: 0;
   background-image:
-    radial-gradient(1200px 600px at 80% -10%, rgba(255, 138, 61, 0.15), transparent 60%),
-    radial-gradient(800px 500px at -10% 30%, rgba(255, 209, 102, 0.10), transparent 60%);
+    radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.6) 50%, transparent 52%),
+    radial-gradient(1px 1px at 70% 60%, rgba(255,255,255,0.5) 50%, transparent 52%),
+    radial-gradient(1px 1px at 40% 80%, rgba(255,209,102,0.6) 50%, transparent 52%),
+    radial-gradient(1.5px 1.5px at 85% 20%, rgba(255,255,255,0.5) 50%, transparent 52%),
+    radial-gradient(1px 1px at 10% 65%, rgba(108,184,255,0.5) 50%, transparent 52%),
+    radial-gradient(1px 1px at 55% 15%, rgba(255,255,255,0.6) 50%, transparent 52%);
+  background-size: 600px 600px;
+  animation: starShift 60s linear infinite;
+  opacity: 0.7;
+}
+@keyframes starShift {
+  from { background-position: 0 0; }
+  to   { background-position: 600px 600px; }
 }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 button { font: inherit; cursor: none; }
 h1, h2, h3, h4, h5 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.05;
+  font-family: 'Fraunces', 'Times New Roman', serif;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
 }
+h1 { font-weight: 500; }
+h1 .grad { font-style: italic; font-weight: 600; }
+h2 .grad { font-style: italic; }
 .grad {
   background: var(--grad);
   -webkit-background-clip: text;
@@ -81,7 +146,7 @@ h1, h2, h3, h4, h5 {
   max-width: 1280px; margin: 0 auto; padding: 0 32px;
   display: flex; align-items: center; justify-content: space-between; gap: 24px;
 }
-.logo { display: flex; align-items: center; gap: 10px; font-family: 'Space Grotesk'; font-weight: 500; font-size: 16px; }
+.logo { display: flex; align-items: center; gap: 10px; font-family: 'Fraunces', serif; font-weight: 500; font-size: 16px; }
 .logo strong { color: var(--accent); font-weight: 700; margin-left: 2px; }
 .logo-mark {
   width: 38px; height: 38px; display: grid; place-items: center;
@@ -119,7 +184,7 @@ h1, h2, h3, h4, h5 {
 .btn-ghost:hover { background: var(--surface-2); border-color: rgba(255, 209, 102, 0.4); }
 .btn-call {
   background: var(--surface); border-color: var(--border); color: var(--text);
-  font-family: 'Space Grotesk'; font-weight: 600; position: relative;
+  font-family: 'Fraunces', serif; font-weight: 600; position: relative;
 }
 .pulse {
   width: 8px; height: 8px; background: #4ade80; border-radius: 50%;
@@ -186,7 +251,7 @@ h1 .line { display: block; }
 .cta-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 56px; }
 .trust { display: flex; gap: 48px; flex-wrap: wrap; }
 .trust-item { display: flex; flex-direction: column; }
-.trust-item strong { font-family: 'Space Grotesk'; font-size: 28px; color: var(--accent); font-weight: 700; }
+.trust-item strong { font-family: 'Fraunces', serif; font-size: 28px; color: var(--accent); font-weight: 700; }
 .trust-item span { font-size: 13px; color: var(--muted); margin-top: 2px; }
 
 .scroll-hint {
@@ -208,7 +273,7 @@ h1 .line { display: block; }
 .section { max-width: 1280px; margin: 0 auto; padding: 120px 32px; position: relative; }
 .section-head { margin-bottom: 64px; max-width: 720px; }
 .eyebrow {
-  display: inline-block; font-family: 'Space Grotesk';
+  display: inline-block; font-family: 'Fraunces', serif;
   font-size: 13px; font-weight: 600; color: var(--accent);
   text-transform: uppercase; letter-spacing: 0.18em;
   margin-bottom: 16px; padding: 4px 12px;
@@ -256,14 +321,14 @@ h2 { font-size: clamp(36px, 5vw, 64px); }
   background: rgba(255, 209, 102, 0.10);
   border: 1px solid rgba(255, 209, 102, 0.25);
   border-radius: 999px;
-  font-family: 'Space Grotesk'; font-size: 14px; font-weight: 600;
+  font-family: 'Fraunces', serif; font-size: 14px; font-weight: 600;
   color: var(--accent); transform: translateZ(30px);
 }
 
 .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
 .step { padding: 32px 28px; }
 .step-num {
-  font-family: 'Space Grotesk'; font-size: 56px; font-weight: 700;
+  font-family: 'Fraunces', serif; font-size: 56px; font-weight: 700;
   background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
   margin-bottom: 12px; transform: translateZ(40px);
 }
@@ -274,7 +339,7 @@ h2 { font-size: clamp(36px, 5vw, 64px); }
 .price-card { padding: 40px 32px; }
 .price-card h4 { font-size: 18px; color: var(--muted); font-weight: 500; margin-bottom: 16px; }
 .price-card .big-price {
-  font-family: 'Space Grotesk'; font-size: 56px; font-weight: 700; margin-bottom: 8px;
+  font-family: 'Fraunces', serif; font-size: 56px; font-weight: 700; margin-bottom: 8px;
   background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .price-card .sub { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
@@ -296,7 +361,7 @@ h2 { font-size: clamp(36px, 5vw, 64px); }
 .ribbon {
   position: absolute; top: 18px; right: 18px;
   padding: 6px 12px; background: var(--grad); color: #1a0f00;
-  font-family: 'Space Grotesk'; font-size: 11px; font-weight: 700;
+  font-family: 'Fraunces', serif; font-size: 11px; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.12em;
   border-radius: 999px; transform: translateZ(50px);
 }
@@ -328,7 +393,7 @@ h2 { font-size: clamp(36px, 5vw, 64px); }
   transform: translate(-50%, -50%) rotateX(-60deg);
   width: 88px; height: 88px; display: grid; place-items: center;
   background: var(--grad); border-radius: 50%;
-  font-family: 'Space Grotesk'; font-weight: 700; font-size: 28px; color: #1a0f00;
+  font-family: 'Fraunces', serif; font-weight: 700; font-size: 28px; color: #1a0f00;
   box-shadow: 0 20px 60px rgba(255, 138, 61, 0.5);
 }
 .orbit-ring { position: absolute; inset: 0; border: 1px dashed rgba(255, 209, 102, 0.3); border-radius: 50%; }
@@ -343,6 +408,159 @@ h2 { font-size: clamp(36px, 5vw, 64px); }
 }
 .orbit-ring.r2 span { background: #ff8a3d; box-shadow: 0 0 24px #ff8a3d; }
 .orbit-ring.r3 span { background: #ff5a5f; box-shadow: 0 0 24px #ff5a5f; }
+
+/* ---- Schulungen ---- */
+.schulungen .section-head { max-width: 800px; }
+.schulungen .lead { margin-top: 16px; }
+.schul-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+.schul-feature {
+  position: relative;
+  padding: 36px 32px;
+  background: linear-gradient(135deg, rgba(255, 209, 102, 0.06), rgba(255, 138, 61, 0.03));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(18px);
+  transform-style: preserve-3d;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  overflow: hidden;
+}
+.schul-feature::before {
+  content: ''; position: absolute; inset: 0;
+  border-radius: var(--radius);
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%), rgba(255, 209, 102, 0.12), transparent 45%);
+  opacity: 0; transition: opacity 0.3s; pointer-events: none;
+}
+.schul-feature:hover { border-color: rgba(255, 209, 102, 0.35); box-shadow: var(--shadow-lg); }
+.schul-feature:hover::before { opacity: 1; }
+.schul-num {
+  display: inline-grid; place-items: center;
+  width: 52px; height: 52px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-3));
+  color: #1a0f00;
+  border-radius: 14px;
+  font-family: 'Fraunces', serif;
+  font-size: 26px; font-weight: 700;
+  font-style: italic;
+  margin-bottom: 22px;
+  box-shadow: 0 12px 30px -8px rgba(255, 138, 61, 0.5);
+  transform: translateZ(40px);
+}
+.schul-feature h3 { font-size: 24px; margin-bottom: 12px; transform: translateZ(30px); }
+.schul-feature p { color: var(--muted); font-size: 15px; line-height: 1.65; margin-bottom: 20px; transform: translateZ(20px); }
+.schul-meta {
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+  font-size: 13px; color: var(--accent);
+  font-family: 'Geist', sans-serif; font-weight: 500;
+  padding-top: 16px; border-top: 1px solid var(--border);
+  transform: translateZ(15px);
+}
+.schul-meta .dot-sep { color: var(--muted); }
+
+/* ---- Reviews 3D carousel ---- */
+.section-head.center { text-align: center; margin-left: auto; margin-right: auto; }
+.section-head.center .lead { margin-left: auto; margin-right: auto; }
+.reviews { padding-bottom: 60px; }
+.review-stage {
+  position: relative;
+  margin: 0 auto 40px;
+  width: 100%;
+  height: 560px;
+  perspective: 1400px;
+  perspective-origin: 50% 40%;
+}
+.review-stage-inner {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transform-style: preserve-3d;
+}
+.review-ring {
+  position: relative;
+  width: 320px; height: 380px;
+  transform-style: preserve-3d;
+  animation: ringSpin 36s linear infinite;
+}
+.review-ring:hover { animation-play-state: paused; }
+@keyframes ringSpin {
+  from { transform: rotateY(0deg); }
+  to   { transform: rotateY(-360deg); }
+}
+.review-card {
+  position: absolute;
+  inset: 0;
+  display: flex; flex-direction: column;
+  padding: 28px;
+  background: linear-gradient(160deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+  border: 1px solid rgba(255, 209, 102, 0.18);
+  border-radius: 24px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow:
+    0 30px 60px -20px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+  transition: box-shadow 0.4s;
+  backface-visibility: hidden;
+}
+.review-card .rstars {
+  color: #ffd166;
+  font-size: 18px;
+  letter-spacing: 4px;
+  margin-bottom: 14px;
+  text-shadow: 0 0 18px rgba(255, 209, 102, 0.5);
+}
+.review-card p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text);
+  flex: 1;
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-style: italic;
+}
+.review-card .rmeta {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex; flex-direction: column; gap: 2px;
+}
+.review-card .rmeta strong { font-size: 14px; font-weight: 600; color: var(--text); font-style: normal; }
+.review-card .rmeta span { font-size: 12px; color: var(--muted); }
+.review-card .gicon {
+  position: absolute; top: 22px; right: 22px;
+  width: 32px; height: 32px;
+  display: grid; place-items: center;
+  background: rgba(255,255,255,0.92);
+  border-radius: 50%;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+}
+.review-glow {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 520px; height: 520px;
+  background: radial-gradient(circle, rgba(255, 138, 61, 0.22), transparent 65%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: -1;
+}
+.review-summary {
+  text-align: center;
+  padding-top: 24px;
+}
+.rsum-stars { color: #ffd166; font-size: 26px; letter-spacing: 6px; margin-bottom: 8px; text-shadow: 0 0 20px rgba(255, 209, 102, 0.4); }
+.rsum-text { color: var(--muted); font-size: 15px; }
+.rsum-text strong { color: var(--accent); font-family: 'Fraunces', serif; font-style: italic; font-weight: 700; }
+
+@media (max-width: 720px) {
+  .review-stage { height: 480px; }
+  .review-ring { width: 260px; height: 340px; }
+  .review-card { padding: 22px; }
+}
 
 .cta-section { padding: 80px 32px 120px; }
 .cta-card {
@@ -396,6 +614,15 @@ h2 { font-size: clamp(36px, 5vw, 64px); }
 </head>
 <body>
 
+<div class="bg-layers" aria-hidden="true">
+  <div class="aurora"></div>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+  <div class="stars"></div>
+  <div class="grain"></div>
+</div>
+
 <div class="cursor" id="cursor"></div>
 <div class="cursor-dot" id="cursorDot"></div>
 
@@ -418,8 +645,9 @@ h2 { font-size: clamp(36px, 5vw, 64px); }
     </a>
     <ul class="nav-links">
       <li><a href="#services">Leistungen</a></li>
+      <li><a href="#schulungen">Schulungen</a></li>
       <li><a href="#pricing">Preise</a></li>
-      <li><a href="#gebiet">Einsatzgebiet</a></li>
+      <li><a href="#bewertungen">Bewertungen</a></li>
       <li><a href="#kontakt">Kontakt</a></li>
     </ul>
     <a href="tel:+4915112345678" class="btn btn-call">
@@ -625,6 +853,60 @@ h2 { font-size: clamp(36px, 5vw, 64px); }
   </div>
 </section>
 
+<section id="schulungen" class="section schulungen">
+  <div class="section-head">
+    <p class="eyebrow">Schulungen & Wissen</p>
+    <h2>Schloss­technik <span class="grad">verstehen.</span></h2>
+    <p class="lead">Wir geben unser Handwerk weiter – an Hausverwaltungen, Sicherheitsfirmen und private Bauherren. Praxisnah, kompakt, mit echtem Werkzeug in der Hand.</p>
+  </div>
+
+  <div class="schul-grid">
+    <div class="schul-feature tilt" data-tilt>
+      <div class="schul-num">A</div>
+      <h3>Einbruchschutz-Beratung</h3>
+      <p>2-Stunden-Workshop für Eigenheim­besitzer: Schwachstellen erkennen, mechanische Sicherung nachrüsten, Versicherungs-Anforderungen verstehen.</p>
+      <div class="schul-meta">
+        <span>2 Std · vor Ort</span>
+        <span class="dot-sep">·</span>
+        <span>149 € / Gruppe bis 6</span>
+      </div>
+    </div>
+
+    <div class="schul-feature tilt" data-tilt>
+      <div class="schul-num">B</div>
+      <h3>Schließanlagen-Schulung</h3>
+      <p>Für Hausverwalter und Facility-Manager: Aufbau einer Schließanlage, Schlüssel­verwaltung, Sicherheitsstufen, Erweiterung im Bestand.</p>
+      <div class="schul-meta">
+        <span>Halbtags-Workshop</span>
+        <span class="dot-sep">·</span>
+        <span>auf Anfrage</span>
+      </div>
+    </div>
+
+    <div class="schul-feature tilt" data-tilt>
+      <div class="schul-num">C</div>
+      <h3>Notöffnung für Profis</h3>
+      <p>Für Hausnotruf, Pflege­dienste und Security: zerstörungsfreie Öffnungs­techniken, rechtliche Grundlagen, Werkzeugkunde.</p>
+      <div class="schul-meta">
+        <span>Tagesseminar</span>
+        <span class="dot-sep">·</span>
+        <span>Zertifikat</span>
+      </div>
+    </div>
+
+    <div class="schul-feature tilt" data-tilt>
+      <div class="schul-num">D</div>
+      <h3>Azubi-Begleitung</h3>
+      <p>Unterstützung für angehende Sicherheits­techniker und Mechatroniker – wir geben Einblick, lassen mitmachen, prüfen mit.</p>
+      <div class="schul-meta">
+        <span>fortlaufend</span>
+        <span class="dot-sep">·</span>
+        <span>IHK-konform</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="gebiet" class="section coverage">
   <div class="coverage-inner">
     <div class="coverage-text">
@@ -644,6 +926,83 @@ h2 { font-size: clamp(36px, 5vw, 64px); }
         <div class="orbit-ring r3"><span></span></div>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="bewertungen" class="section reviews">
+  <div class="section-head center">
+    <p class="eyebrow">Google-Bewertungen</p>
+    <h2><span class="grad">4,9 von 5</span> Sternen.<br/>Über 300 Mal empfohlen.</h2>
+    <p class="lead">Echte Stimmen unserer Kunden aus Hitdorf, Leverkusen, Monheim und Umgebung.</p>
+  </div>
+
+  <div class="review-stage">
+    <div class="review-stage-inner">
+      <div class="review-ring" id="reviewRing">
+        <!-- Cards are positioned via JS -->
+        <article class="review-card">
+          <div class="rstars">★★★★★</div>
+          <p>"Tür war zugefallen, in unter 15 Minuten war Herr Tonn da. Festpreis stimmte aufs Cent. Ehrlich, freundlich, unkompliziert."</p>
+          <div class="rmeta"><strong>Markus B.</strong><span>Leverkusen-Hitdorf</span></div>
+          <div class="gicon" aria-label="Google"><svg viewBox="0 0 48 48" width="20" height="20"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.6-6 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 3l5.7-5.7C33.6 6.1 29.1 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.8 1.1 8 3l5.7-5.7C33.6 6.1 29.1 4 24 4 16.3 4 9.6 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5 0 9.5-1.9 12.9-5l-6-5.1c-1.9 1.4-4.4 2.1-7 2.1-5.2 0-9.7-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4 5.5l6 5.1C40.6 35 44 30 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg></div>
+        </article>
+
+        <article class="review-card">
+          <div class="rstars">★★★★★</div>
+          <p>"Sehr kompetent und fairer Preis. Auch nach der Reparatur erreichbar. So muss ein Handwerker sein – Empfehlung von Herzen!"</p>
+          <div class="rmeta"><strong>Sandra W.</strong><span>Monheim am Rhein</span></div>
+          <div class="gicon"><svg viewBox="0 0 48 48" width="20" height="20"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.6-6 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 3l5.7-5.7C33.6 6.1 29.1 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.8 1.1 8 3l5.7-5.7C33.6 6.1 29.1 4 24 4 16.3 4 9.6 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5 0 9.5-1.9 12.9-5l-6-5.1c-1.9 1.4-4.4 2.1-7 2.1-5.2 0-9.7-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4 5.5l6 5.1C40.6 35 44 30 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg></div>
+        </article>
+
+        <article class="review-card">
+          <div class="rstars">★★★★★</div>
+          <p>"Schließanlage für unser Mehrfamilien­haus geplant und installiert. Profi-Beratung, sauberes Handwerk, transparenter Preis."</p>
+          <div class="rmeta"><strong>Thomas K.</strong><span>Hausverwaltung Opladen</span></div>
+          <div class="gicon"><svg viewBox="0 0 48 48" width="20" height="20"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.6-6 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 3l5.7-5.7C33.6 6.1 29.1 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.8 1.1 8 3l5.7-5.7C33.6 6.1 29.1 4 24 4 16.3 4 9.6 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5 0 9.5-1.9 12.9-5l-6-5.1c-1.9 1.4-4.4 2.1-7 2.1-5.2 0-9.7-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4 5.5l6 5.1C40.6 35 44 30 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg></div>
+        </article>
+
+        <article class="review-card">
+          <div class="rstars">★★★★★</div>
+          <p>"Habe die Schulung Einbruchschutz mitgemacht – sehr informativ und praxisnah. Endlich verstehe ich, was an meiner Haustür los ist."</p>
+          <div class="rmeta"><strong>Anna L.</strong><span>Schulungs-Teilnehmerin</span></div>
+          <div class="gicon"><svg viewBox="0 0 48 48" width="20" height="20"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.6-6 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 3l5.7-5.7C33.6 6.1 29.1 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.8 1.1 8 3l5.7-5.7C33.6 6.1 29.1 4 24 4 16.3 4 9.6 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5 0 9.5-1.9 12.9-5l-6-5.1c-1.9 1.4-4.4 2.1-7 2.1-5.2 0-9.7-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4 5.5l6 5.1C40.6 35 44 30 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg></div>
+        </article>
+
+        <article class="review-card">
+          <div class="rstars">★★★★★</div>
+          <p>"Sonntags um 23 Uhr ausgesperrt. Anruf, 18 Minuten später war alles geregelt. Keinerlei Wochenend-Aufschlag wie versprochen."</p>
+          <div class="rmeta"><strong>Michael R.</strong><span>Langenfeld</span></div>
+          <div class="gicon"><svg viewBox="0 0 48 48" width="20" height="20"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.6-6 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 3l5.7-5.7C33.6 6.1 29.1 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.8 1.1 8 3l5.7-5.7C33.6 6.1 29.1 4 24 4 16.3 4 9.6 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5 0 9.5-1.9 12.9-5l-6-5.1c-1.9 1.4-4.4 2.1-7 2.1-5.2 0-9.7-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4 5.5l6 5.1C40.6 35 44 30 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg></div>
+        </article>
+
+        <article class="review-card">
+          <div class="rstars">★★★★★</div>
+          <p>"Tresor des Großvaters geöffnet – ohne Beschädigung, mit viel Geduld. Selten so kompetenten Service erlebt."</p>
+          <div class="rmeta"><strong>Petra S.</strong><span>Köln-Stammheim</span></div>
+          <div class="gicon"><svg viewBox="0 0 48 48" width="20" height="20"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.6-6 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 3l5.7-5.7C33.6 6.1 29.1 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.8 1.1 8 3l5.7-5.7C33.6 6.1 29.1 4 24 4 16.3 4 9.6 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5 0 9.5-1.9 12.9-5l-6-5.1c-1.9 1.4-4.4 2.1-7 2.1-5.2 0-9.7-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4 5.5l6 5.1C40.6 35 44 30 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg></div>
+        </article>
+
+        <article class="review-card">
+          <div class="rstars">★★★★★</div>
+          <p>"Pflegedienst-Schulung war Gold wert. Wir kommen jetzt in Notlagen schneller zu unseren Klienten. Klare Empfehlung."</p>
+          <div class="rmeta"><strong>Frau Özdemir</strong><span>Mobiler Pflegedienst</span></div>
+          <div class="gicon"><svg viewBox="0 0 48 48" width="20" height="20"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.6-6 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 3l5.7-5.7C33.6 6.1 29.1 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.8 1.1 8 3l5.7-5.7C33.6 6.1 29.1 4 24 4 16.3 4 9.6 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5 0 9.5-1.9 12.9-5l-6-5.1c-1.9 1.4-4.4 2.1-7 2.1-5.2 0-9.7-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4 5.5l6 5.1C40.6 35 44 30 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg></div>
+        </article>
+
+        <article class="review-card">
+          <div class="rstars">★★★★★</div>
+          <p>"Hochwertigen Sicherheits­zylinder eingebaut, alles erklärt, sauber gearbeitet. Quittung sofort. Genau so soll's sein."</p>
+          <div class="rmeta"><strong>Jürgen H.</strong><span>Dormagen</span></div>
+          <div class="gicon"><svg viewBox="0 0 48 48" width="20" height="20"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.6-6 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 3l5.7-5.7C33.6 6.1 29.1 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.8 1.1 8 3l5.7-5.7C33.6 6.1 29.1 4 24 4 16.3 4 9.6 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5 0 9.5-1.9 12.9-5l-6-5.1c-1.9 1.4-4.4 2.1-7 2.1-5.2 0-9.7-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4 5.5l6 5.1C40.6 35 44 30 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg></div>
+        </article>
+      </div>
+    </div>
+    <div class="review-glow"></div>
+  </div>
+
+  <div class="review-summary">
+    <div class="rsum-stars">★ ★ ★ ★ ★</div>
+    <div class="rsum-text"><strong>4,9</strong> Durchschnitt · <strong>312</strong> Bewertungen · 100 % weiterempfohlen</div>
   </div>
 </section>
 
@@ -700,6 +1059,26 @@ h2 { font-size: clamp(36px, 5vw, 64px); }
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
+
+// Position review cards in a 3D ring
+(function setupReviewRing() {
+  const ring = document.getElementById('reviewRing');
+  if (!ring) return;
+  const cards = ring.querySelectorAll('.review-card');
+  const n = cards.length;
+  const isMobile = window.matchMedia('(max-width: 720px)').matches;
+  const radius = isMobile ? 360 : 480;
+  cards.forEach((card, i) => {
+    const angle = (i / n) * 360;
+    card.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
+  });
+  // Counter-rotate cards on hover so they face the user briefly
+  let scrollRot = 0;
+  window.addEventListener('scroll', () => {
+    scrollRot = window.scrollY * 0.04;
+    ring.style.setProperty('--scroll-rot', scrollRot + 'deg');
+  });
+})();
 
 // Custom cursor
 const cursor = document.getElementById('cursor');
