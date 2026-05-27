@@ -468,9 +468,9 @@ h2 { font-size: clamp(36px, 5vw, 64px); }
   position: relative;
   margin: 0 auto 40px;
   width: 100%;
-  height: 560px;
-  perspective: 1400px;
-  perspective-origin: 50% 40%;
+  height: 620px;
+  perspective: 1800px;
+  perspective-origin: 50% 45%;
 }
 .review-stage-inner {
   position: absolute;
@@ -481,9 +481,10 @@ h2 { font-size: clamp(36px, 5vw, 64px); }
 }
 .review-ring {
   position: relative;
-  width: 320px; height: 380px;
+  width: 360px; height: 420px;
   transform-style: preserve-3d;
-  animation: ringSpin 36s linear infinite;
+  animation: ringSpin 50s linear infinite;
+  will-change: transform;
 }
 .review-ring:hover { animation-play-state: paused; }
 @keyframes ringSpin {
@@ -494,49 +495,51 @@ h2 { font-size: clamp(36px, 5vw, 64px); }
   position: absolute;
   inset: 0;
   display: flex; flex-direction: column;
-  padding: 28px;
-  background: linear-gradient(160deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-  border: 1px solid rgba(255, 209, 102, 0.18);
-  border-radius: 24px;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  padding: 32px;
+  background: linear-gradient(160deg, #1a1a2e 0%, #14141f 100%);
+  border: 1px solid rgba(255, 209, 102, 0.28);
+  border-radius: 22px;
   box-shadow:
-    0 30px 60px -20px rgba(0, 0, 0, 0.6),
-    inset 0 1px 0 rgba(255,255,255,0.06);
-  transition: box-shadow 0.4s;
+    0 40px 80px -20px rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(255,255,255,0.04),
+    inset 0 1px 0 rgba(255,255,255,0.08);
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform;
+  transform-style: preserve-3d;
 }
 .review-card .rstars {
   color: #ffd166;
-  font-size: 18px;
-  letter-spacing: 4px;
-  margin-bottom: 14px;
-  text-shadow: 0 0 18px rgba(255, 209, 102, 0.5);
+  font-size: 20px;
+  letter-spacing: 3px;
+  margin-bottom: 16px;
+  text-shadow: 0 0 12px rgba(255, 209, 102, 0.35);
 }
 .review-card p {
-  font-size: 15px;
-  line-height: 1.6;
-  color: var(--text);
+  font-size: 16px;
+  line-height: 1.55;
+  color: #f4f4f8;
   flex: 1;
   font-family: 'Fraunces', serif;
   font-weight: 500;
   font-style: italic;
+  letter-spacing: -0.005em;
 }
 .review-card .rmeta {
-  margin-top: 18px;
-  padding-top: 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  display: flex; flex-direction: column; gap: 2px;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 209, 102, 0.18);
+  display: flex; flex-direction: column; gap: 3px;
 }
-.review-card .rmeta strong { font-size: 14px; font-weight: 600; color: var(--text); font-style: normal; }
-.review-card .rmeta span { font-size: 12px; color: var(--muted); }
+.review-card .rmeta strong { font-size: 15px; font-weight: 600; color: #fff; font-style: normal; font-family: 'Geist', sans-serif; }
+.review-card .rmeta span { font-size: 13px; color: #9da0b3; font-family: 'Geist', sans-serif; }
 .review-card .gicon {
-  position: absolute; top: 22px; right: 22px;
-  width: 32px; height: 32px;
+  position: absolute; top: 24px; right: 24px;
+  width: 34px; height: 34px;
   display: grid; place-items: center;
-  background: rgba(255,255,255,0.92);
+  background: #fff;
   border-radius: 50%;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.5);
 }
 .review-glow {
   position: absolute;
@@ -557,9 +560,10 @@ h2 { font-size: clamp(36px, 5vw, 64px); }
 .rsum-text strong { color: var(--accent); font-family: 'Fraunces', serif; font-style: italic; font-weight: 700; }
 
 @media (max-width: 720px) {
-  .review-stage { height: 480px; }
-  .review-ring { width: 260px; height: 340px; }
-  .review-card { padding: 22px; }
+  .review-stage { height: 520px; perspective: 1400px; }
+  .review-ring { width: 300px; height: 360px; }
+  .review-card { padding: 24px; }
+  .review-card p { font-size: 15px; }
 }
 
 .cta-section { padding: 80px 32px 120px; }
@@ -1067,7 +1071,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
   const cards = ring.querySelectorAll('.review-card');
   const n = cards.length;
   const isMobile = window.matchMedia('(max-width: 720px)').matches;
-  const radius = isMobile ? 360 : 480;
+  const radius = isMobile ? 380 : 560;
   cards.forEach((card, i) => {
     const angle = (i / n) * 360;
     card.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
@@ -1136,77 +1140,148 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.section-head, .card, .step, .price-card, .cta-card, .coverage-text, .coverage-visual')
   .forEach(el => { el.classList.add('reveal'); observer.observe(el); });
 
-// Three.js hero scene
+// Three.js hero scene - premium PBR key
 if (typeof THREE !== 'undefined') {
   const canvas = document.getElementById('hero3d');
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.15;
+  renderer.outputColorSpace = THREE.SRGBColorSpace || THREE.sRGBEncoding;
 
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
-  camera.position.set(0, 0, 9);
+  const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
+  camera.position.set(0, 0, 10);
 
-  scene.add(new THREE.AmbientLight(0xffffff, 0.35));
-  const keyLight = new THREE.DirectionalLight(0xffd166, 2.2);
-  keyLight.position.set(5, 4, 5); scene.add(keyLight);
-  const rim = new THREE.PointLight(0xff5a5f, 6, 20);
-  rim.position.set(-4, -2, 3); scene.add(rim);
-  const fill = new THREE.PointLight(0x6cb8ff, 2, 18);
-  fill.position.set(3, -3, -2); scene.add(fill);
+  // Procedural environment map (a soft warm studio gradient) for reflections
+  function makeEnvMap() {
+    const size = 256;
+    const c = document.createElement('canvas');
+    c.width = size; c.height = size;
+    const ctx = c.getContext('2d');
+    const g = ctx.createLinearGradient(0, 0, 0, size);
+    g.addColorStop(0,   '#2a1a0a');
+    g.addColorStop(0.35,'#6b3d10');
+    g.addColorStop(0.55,'#ffb066');
+    g.addColorStop(0.75,'#f5b942');
+    g.addColorStop(1,   '#1a0e05');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, size, size);
+    // soft highlight
+    const r = ctx.createRadialGradient(size*0.7, size*0.35, 10, size*0.7, size*0.35, size*0.5);
+    r.addColorStop(0, 'rgba(255,255,240,0.95)');
+    r.addColorStop(1, 'rgba(255,255,240,0)');
+    ctx.fillStyle = r; ctx.fillRect(0, 0, size, size);
+    const tex = new THREE.CanvasTexture(c);
+    tex.mapping = THREE.EquirectangularReflectionMapping;
+    tex.colorSpace = THREE.SRGBColorSpace || THREE.sRGBEncoding;
+    return tex;
+  }
+  const envMap = makeEnvMap();
+  scene.environment = envMap;
+
+  // Lights
+  scene.add(new THREE.AmbientLight(0xffffff, 0.25));
+  const keyLight = new THREE.DirectionalLight(0xffe9c4, 1.6);
+  keyLight.position.set(5, 6, 6); scene.add(keyLight);
+  const rim = new THREE.DirectionalLight(0xff8a3d, 1.4);
+  rim.position.set(-6, -2, -4); scene.add(rim);
+  const fill = new THREE.PointLight(0xffd166, 1.0, 22);
+  fill.position.set(-3, 3, 4); scene.add(fill);
 
   const keyGroup = new THREE.Group();
   scene.add(keyGroup);
 
-  const goldMat = new THREE.MeshStandardMaterial({
-    color: 0xf5b942, metalness: 0.95, roughness: 0.18,
-    emissive: 0x3a1f00, emissiveIntensity: 0.4
+  // Premium gold material
+  const goldMat = new THREE.MeshPhysicalMaterial({
+    color: 0xf5b942,
+    metalness: 1.0,
+    roughness: 0.22,
+    clearcoat: 1.0,
+    clearcoatRoughness: 0.18,
+    envMap: envMap,
+    envMapIntensity: 1.4
   });
 
-  const bow = new THREE.Mesh(new THREE.TorusGeometry(1.0, 0.32, 32, 96), goldMat);
-  bow.position.x = -1.6; bow.rotation.y = Math.PI / 2;
+  // Bow (head) - thicker torus with smoother segments
+  const bowGeo = new THREE.TorusGeometry(1.05, 0.30, 64, 192);
+  const bow = new THREE.Mesh(bowGeo, goldMat);
+  bow.position.x = -1.7; bow.rotation.y = Math.PI / 2;
   keyGroup.add(bow);
 
+  // Decorative inner ring (slimmer, sharper)
   const innerRing = new THREE.Mesh(
-    new THREE.TorusGeometry(0.65, 0.05, 16, 64),
-    new THREE.MeshStandardMaterial({ color: 0xffd166, metalness: 1, roughness: 0.15, emissive: 0x6b3a00, emissiveIntensity: 0.6 })
+    new THREE.TorusGeometry(0.62, 0.04, 24, 96),
+    goldMat
   );
-  innerRing.position.x = -1.6; innerRing.rotation.y = Math.PI / 2;
+  innerRing.position.x = -1.7; innerRing.rotation.y = Math.PI / 2;
   keyGroup.add(innerRing);
 
-  const shaft = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.22, 3.2, 32), goldMat);
-  shaft.rotation.z = Math.PI / 2; shaft.position.x = 0.4;
+  // Shaft - rounded cylinder with end caps that join smoothly
+  const shaft = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.20, 0.20, 3.3, 48, 1, false),
+    goldMat
+  );
+  shaft.rotation.z = Math.PI / 2; shaft.position.x = 0.45;
   keyGroup.add(shaft);
 
-  const teeth = [
-    { x: 1.4, y: -0.45, w: 0.35, h: 0.45 },
-    { x: 1.8, y: -0.55, w: 0.30, h: 0.55 },
-    { x: 2.15, y: -0.40, w: 0.30, h: 0.40 },
-  ];
-  teeth.forEach(t => {
-    const m = new THREE.Mesh(new THREE.BoxGeometry(t.w, t.h, 0.44), goldMat);
-    m.position.set(t.x, t.y - 0.05, 0);
-    keyGroup.add(m);
+  // Join cap where shaft meets bow
+  const joinCap = new THREE.Mesh(new THREE.SphereGeometry(0.22, 32, 32), goldMat);
+  joinCap.position.x = -1.1;
+  keyGroup.add(joinCap);
+
+  // Key bit shaped as a real silhouette via ExtrudeGeometry
+  const bitShape = new THREE.Shape();
+  bitShape.moveTo(0,    0.20);   // top edge starts at shaft underside
+  bitShape.lineTo(1.05, 0.20);
+  bitShape.lineTo(1.05, -0.20);
+  bitShape.lineTo(1.18, -0.20);
+  bitShape.lineTo(1.18, -0.70);  // first tooth down
+  bitShape.lineTo(1.32, -0.70);
+  bitShape.lineTo(1.32, -0.45);  // small notch up
+  bitShape.lineTo(1.50, -0.45);
+  bitShape.lineTo(1.50, -0.78);  // second tooth down
+  bitShape.lineTo(1.70, -0.78);
+  bitShape.lineTo(1.70, -0.55);
+  bitShape.lineTo(1.86, -0.55);  // third tooth lower
+  bitShape.lineTo(1.86, -0.20);  // back to shaft height
+  bitShape.lineTo(2.05, -0.20);
+  bitShape.lineTo(2.05, 0.20);   // tip top
+  bitShape.lineTo(0,    0.20);
+
+  const bitGeo = new THREE.ExtrudeGeometry(bitShape, {
+    depth: 0.20,
+    bevelEnabled: true,
+    bevelThickness: 0.04,
+    bevelSize: 0.04,
+    bevelSegments: 4,
+    curveSegments: 6
   });
+  bitGeo.translate(0, 0, -0.1);
+  const bit = new THREE.Mesh(bitGeo, goldMat);
+  bit.position.set(0.6, 0, 0);
+  keyGroup.add(bit);
 
-  const cap = new THREE.Mesh(new THREE.SphereGeometry(0.22, 24, 24), goldMat);
-  cap.position.x = 2.0;
-  keyGroup.add(cap);
+  // Tip rounding (small sphere at far end)
+  const tip = new THREE.Mesh(new THREE.SphereGeometry(0.14, 24, 24), goldMat);
+  tip.position.set(2.7, 0.0, 0);
+  keyGroup.add(tip);
 
-  keyGroup.position.set(2.4, 0.4, 0);
-  keyGroup.rotation.x = 0.2;
+  keyGroup.position.set(2.0, 0.4, 0);
+  keyGroup.rotation.x = 0.18;
 
-  const particleCount = 180;
+  // Floating glints (smaller, sharper points)
+  const particleCount = 220;
   const positions = new Float32Array(particleCount * 3);
   for (let i = 0; i < particleCount; i++) {
-    positions[i*3] = (Math.random() - 0.5) * 18;
-    positions[i*3+1] = (Math.random() - 0.5) * 12;
-    positions[i*3+2] = (Math.random() - 0.5) * 10 - 2;
+    positions[i*3] = (Math.random() - 0.5) * 20;
+    positions[i*3+1] = (Math.random() - 0.5) * 14;
+    positions[i*3+2] = (Math.random() - 0.5) * 12 - 2;
   }
   const pGeo = new THREE.BufferGeometry();
   pGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
   const particles = new THREE.Points(pGeo, new THREE.PointsMaterial({
-    size: 0.04, color: 0xffd166, transparent: true, opacity: 0.7,
+    size: 0.035, color: 0xffd166, transparent: true, opacity: 0.55,
     blending: THREE.AdditiveBlending, depthWrite: false
   }));
   scene.add(particles);
@@ -1229,13 +1304,14 @@ if (typeof THREE !== 'undefined') {
     const t = clock.getElapsedTime();
     mx += (tmx - mx) * 0.05;
     my += (tmy - my) * 0.05;
-    keyGroup.rotation.y = t * 0.45 + mx * 0.4 + scrollY * 0.002;
-    keyGroup.rotation.x = 0.2 + Math.sin(t * 0.7) * 0.12 + my * 0.25;
-    keyGroup.position.y = 0.4 + Math.sin(t * 1.1) * 0.12;
+    // Slower, more elegant rotation
+    keyGroup.rotation.y = t * 0.28 + mx * 0.35 + scrollY * 0.0015;
+    keyGroup.rotation.x = 0.18 + Math.sin(t * 0.5) * 0.08 + my * 0.2;
+    keyGroup.position.y = 0.4 + Math.sin(t * 0.8) * 0.08;
     particles.rotation.y = t * 0.04;
     particles.rotation.x = t * 0.02;
-    camera.position.x = mx * 0.4;
-    camera.position.y = -my * 0.3;
+    camera.position.x = mx * 0.35;
+    camera.position.y = -my * 0.25;
     camera.lookAt(0, 0, 0);
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
