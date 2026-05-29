@@ -919,6 +919,176 @@ h2 { font-size: clamp(36px, 5vw, 64px); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+/* ============================================================
+   MOBILE OPTIMIZATIONS (< 768px)
+   Strategie: schwere 3D-Effekte aus, leichte Akzente bleiben.
+   - Three.js Hero-Schluessel aus (siehe JS)
+   - Aurora/Blobs deutlich gedaempft, Grain weg
+   - Karussell wird horizontaler Swipe (kein 3D-Ring)
+   - Card-Tilts deaktiviert (nur Maus, ohnehin ungenutzt)
+   - Weniger Backdrop-Blur fuer Performance
+   ============================================================ */
+@media (max-width: 768px) {
+  /* Hintergrund beruhigen */
+  #hero3d { display: none; }
+  .blob { display: none; }
+  .aurora { opacity: 0.35; filter: blur(80px) saturate(110%); }
+  .stars { opacity: 0.4; }
+  .grain { display: none; }
+  .hero-glow { display: none; }
+  .hero-grid { opacity: 0.4; background-size: 40px 40px; }
+
+  /* Heavy backdrop-blur weg fuer Performance */
+  .card, .step, .price-card, .schul-feature, .review-card,
+  .adac-card, .radar-meta, .chips li {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .nav { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+
+  /* Nav kompakter */
+  .nav { padding: 12px 0; }
+  .nav-inner { padding: 0 16px; gap: 8px; }
+  .logo { font-size: 14px; gap: 8px; }
+  .logo-mark { width: 32px; height: 32px; }
+  .logo-mark svg { width: 22px; height: 22px; }
+  .btn-call { padding: 9px 12px; font-size: 12px; gap: 4px; }
+  .btn-call .pulse { width: 6px; height: 6px; }
+
+  /* Hero kompakter + besser lesbar */
+  .hero { padding: 90px 20px 50px; min-height: auto; display: block; }
+  .hero-content { padding-top: 8px; }
+  .badge { font-size: 12px; padding: 6px 14px; margin-bottom: 20px; }
+  h1 {
+    font-size: clamp(38px, 11vw, 64px);
+    line-height: 1.04;
+    margin-bottom: 20px;
+    max-width: none;
+  }
+  .lead {
+    font-size: 15px;
+    line-height: 1.55;
+    margin-bottom: 28px;
+    color: #c4c8da;
+  }
+  .cta-row { gap: 10px; margin-bottom: 36px; flex-direction: column; align-items: stretch; }
+  .cta-row .btn { justify-content: center; width: 100%; padding: 14px 20px; font-size: 15px; }
+  .trust { gap: 28px; }
+  .trust-item strong { font-size: 22px; }
+  .trust-item span { font-size: 11px; }
+  .scroll-hint { display: none; }
+
+  /* Alle Sektionen kompakter */
+  .section { padding: 64px 20px; }
+  .section-head { margin-bottom: 36px; }
+  .eyebrow { font-size: 11px; padding: 3px 10px; letter-spacing: 0.14em; margin-bottom: 12px; }
+  h2 { font-size: clamp(28px, 8vw, 44px); line-height: 1.08; }
+
+  /* 3D-Tilts ausschalten (Maus, auf Touch ohnehin ungenutzt) */
+  .tilt { transform: none !important; }
+  .card, .step, .price-card, .schul-feature, .adac-card {
+    transform: none !important;
+  }
+  .card-icon, .step-num, .schul-num, .ribbon,
+  .card h3, .card p, .card .price,
+  .step h4, .step p { transform: none !important; }
+
+  /* Cards & Listen einspaltig, weniger Padding */
+  .cards, .steps, .pricing, .schul-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .card, .step { padding: 26px 22px; }
+  .card-icon { width: 52px; height: 52px; margin-bottom: 18px; }
+  .card-icon svg { width: 32px; height: 32px; }
+  .card h3, .step h4 { font-size: 20px; }
+  .schul-feature { padding: 28px 22px; }
+  .schul-num { width: 44px; height: 44px; font-size: 22px; margin-bottom: 16px; }
+
+  /* Pricing kompakter */
+  .price-card { padding: 32px 24px; }
+  .price-card .big-price { font-size: 42px; }
+  .price-card ul li { font-size: 14px; padding: 10px 0 10px 24px; }
+
+  /* ADAC Strip */
+  .adac-strip { padding: 0 20px; margin-top: -24px; }
+  .adac-card { padding: 24px 20px; gap: 16px; }
+  .adac-text h3 { font-size: 20px; }
+  .adac-text p { font-size: 14px; }
+  .adac-logo svg { width: 72px; height: 46px; }
+  .adac-eyebrow { font-size: 10px; }
+
+  /* ===== BEWERTUNGEN: aus 3D-Ring -> horizontaler Swipe ===== */
+  .review-stage {
+    position: relative;
+    height: auto !important;
+    perspective: none !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    margin: 0 -20px;
+    padding: 8px 20px 24px;
+    scrollbar-width: none;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+  }
+  .review-stage::-webkit-scrollbar { display: none; }
+  .review-stage-inner { display: contents !important; }
+  .review-ring {
+    display: contents !important;
+    animation: none !important;
+  }
+  .review-card {
+    position: relative;
+    inset: auto;
+    flex: 0 0 280px;
+    width: 280px;
+    height: 340px;
+    transform: none !important;
+    scroll-snap-align: center;
+    padding: 22px;
+  }
+  .review-card p { font-size: 14px; line-height: 1.5; }
+  .review-card .gicon { top: 18px; right: 18px; width: 28px; height: 28px; }
+  .review-glow { display: none; }
+  .rsum-stars { font-size: 22px; letter-spacing: 4px; }
+  .rsum-text { font-size: 14px; padding: 0 16px; }
+
+  /* Radar etwas flacher gekippt und kleiner */
+  .radar { max-width: 360px; }
+  .radar-dial { transform: rotateX(30deg) rotateZ(-8deg); }
+  .city::after { font-size: 9px; left: 10px; }
+  .city { width: 7px; height: 7px; }
+  .hub-dot { width: 12px; height: 12px; }
+  .hub-pulse { width: 12px; height: 12px; }
+  .radar-corner { font-size: 9px; letter-spacing: 0.14em; }
+  .radar-meta { padding: 10px 16px; gap: 12px; }
+  .rmeta-clock { font-size: 15px; }
+  .rmeta-status strong { font-size: 12px; }
+  .rmeta-status span { font-size: 11px; }
+  .coverage-inner { gap: 28px; }
+
+  /* CTA-Card */
+  .cta-section { padding: 40px 20px 80px; }
+  .cta-card { padding: 48px 24px; border-radius: 24px; }
+  .cta-card .cta-row { flex-direction: column; }
+  .cta-card .btn.big { padding: 14px 22px; font-size: 15px; width: 100%; }
+
+  /* Footer */
+  .footer { padding: 40px 20px 20px; }
+  .footer-cols { grid-template-columns: 1fr 1fr; gap: 24px; }
+}
+
+/* Extra-klein (< 400px) */
+@media (max-width: 400px) {
+  h1 { font-size: clamp(32px, 10vw, 48px); }
+  .trust { gap: 18px; }
+  .trust-item strong { font-size: 18px; }
+  .review-card { flex-basis: 260px; height: 320px; }
+}
 </style>
 </head>
 <body>
@@ -1554,7 +1724,10 @@ document.querySelectorAll('.section-head, .card, .step, .price-card, .cta-card, 
   .forEach(el => { el.classList.add('reveal'); observer.observe(el); });
 
 // Three.js hero scene - premium PBR key
-if (typeof THREE !== 'undefined') {
+// Skip entirely on mobile: spart Akku, CPU und vermeidet das riesige
+// 3D-Objekt im engen Viewport.
+const skipThreeOnMobile = window.matchMedia('(max-width: 768px)').matches;
+if (typeof THREE !== 'undefined' && !skipThreeOnMobile) {
   const canvas = document.getElementById('hero3d');
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
